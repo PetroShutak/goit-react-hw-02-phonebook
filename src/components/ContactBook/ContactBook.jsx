@@ -41,6 +41,7 @@ export class ContactBook extends Component {
       <div>
         <h1>Phone Contact Book</h1>
         <form onSubmit={this.handleSubmit}>
+        <label htmlFor="name">Name:</label>
           <input
             type="text"
             name="name"
@@ -50,6 +51,7 @@ export class ContactBook extends Component {
             value={name}
             onChange={this.handleNameChange}
           />
+          <label htmlFor="number">Number:</label>
           <input
             type="tel"
             name="number"
