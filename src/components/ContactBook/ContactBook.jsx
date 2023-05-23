@@ -6,29 +6,36 @@ export class ContactBook extends Component {
   state = {
     contacts: [],
     name: '',
+    number: ''
   };
 
   handleNameChange = event => {
     this.setState({ name: event.target.value });
   };
+  
+  handleNumberChange = event => {
+    this.setState({ number: event.target.value });
+  };
 
   handleSubmit = event => {
     event.preventDefault();
-    const { name, contacts } = this.state;
-    if (name.trim() !== '') {
+    const { name, contacts, number } = this.state;
+    if (name.trim() !== '' && number.trim() !== '') {
       const newContact = {
         id: nanoid(),
         name: name.trim(),
+        number: number.trim()
       };
       this.setState({
         contacts: [...contacts, newContact],
         name: '',
+        number: ''
       });
     }
   };
 
   render() {
-    const { name, contacts } = this.state;
+    const { name, contacts, number } = this.state;
 
     return (
       <div>
@@ -43,6 +50,15 @@ export class ContactBook extends Component {
             value={name}
             onChange={this.handleNameChange}
           />
+          <input
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            value={number}
+            onChange={this.handleNumberChange}
+          />
           <button type="submit">Add Contact</button>
         </form>
         <h2>Contact List</h2>
@@ -50,8 +66,10 @@ export class ContactBook extends Component {
           <p>No contacts available</p>
         ) : (
           <ul>
-            {contacts.map(contact => (
-              <li key={contact.id}>{contact.name}</li>
+           {contacts.map(contact => (
+              <li key={contact.id}>
+                {contact.name} - {contact.number}
+              </li>
             ))}
           </ul>
         )}
@@ -65,6 +83,7 @@ ContactBook.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired
     })
   ),
   name: PropTypes.string.isRequired,
