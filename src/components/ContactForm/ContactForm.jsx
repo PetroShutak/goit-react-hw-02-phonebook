@@ -25,7 +25,7 @@ export default class ContactForm extends Component {
     );
 
     if (isExistingContact) {
-      alert('A contact with this name already exists!');
+      alert(`${name} is already in contacts`);
       return;
     }
 
