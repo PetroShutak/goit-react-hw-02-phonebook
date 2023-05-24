@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
@@ -13,7 +14,7 @@ export class App extends Component {
       { id: 'id-4', name: 'Tati Tereshenko', number: '227-91-26' },
       { id: 'id-5', name: 'Sergiy Kotkov', number: '217-91-29' },
       { id: 'id-6', name: 'Barcode', number: '287-91-26' },
-      { id: 'id-7', name: 'Shutak P', number: '217-91-26' },
+      { id: 'id-7', name: 'Shutak P', number: '361-73-83' },
     ],
     filter: '',
   };
@@ -55,3 +56,13 @@ export class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+};

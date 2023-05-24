@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
 
 export default class ContactForm extends Component {
@@ -24,7 +25,7 @@ export default class ContactForm extends Component {
     );
 
     if (isExistingContact) {
-      alert('Контакт з таким іменем вже існує!');
+      alert('A contact with this name already exists!');
       return;
     }
 
@@ -84,3 +85,13 @@ export default class ContactForm extends Component {
     );
   }
 }
+ContactForm.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onAddContact: PropTypes.func.isRequired,
+};
