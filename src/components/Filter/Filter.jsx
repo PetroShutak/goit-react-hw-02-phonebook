@@ -7,7 +7,7 @@ const Filter = ({ value, onChange }) => {
     <label className={css.label}>
       Find contacts by name:
       <br/>
-      <input className={css.input} type="text" value={value} onChange={onChange} placeholder='write here please'/>
+      <input className={css.input} type="text" value={value} onChange={onChange} placeholder='search...'/>
     </label>
   );
 };
