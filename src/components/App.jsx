@@ -29,7 +29,7 @@ export class App extends Component {
     const isExistingContact = contacts.some(
       contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
-  
+
     if (isExistingContact) {
       alert(`${newContact.name} is already in contacts`);
       return;
@@ -44,6 +44,20 @@ export class App extends Component {
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
+
+  componentDidMount() {
+    const savedContacts = localStorage.getItem('contacts');
+    if (savedContacts) {
+      this.setState({ contacts: JSON.parse(savedContacts) });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    const { contacts } = this.state;
+    if (prevState.contacts !== contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }
 
   render() {
     const { contacts, filter } = this.state;
