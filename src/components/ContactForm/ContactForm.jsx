@@ -5,7 +5,6 @@ import css from './ContactForm.module.css';
 
 export default class ContactForm extends Component {
   state = {
-    // contacts: [],
     name: '',
     number: '',
   };
@@ -18,17 +17,7 @@ export default class ContactForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { name, number } = this.state;
-    // const { contacts } = this.props;
-
-    // const isExistingContact = contacts.some(
-    //   contact => contact.name.toLowerCase() === name.toLowerCase()
-    // );
-
-    // if (isExistingContact) {
-    //   alert(`${name} is already in contacts`);
-    //   return;
-    // }
-
+ 
     if (name.trim() !== '' && number.trim() !== '') {
       const newContact = {
         id: nanoid(),
